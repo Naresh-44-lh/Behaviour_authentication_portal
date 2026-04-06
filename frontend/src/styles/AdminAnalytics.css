@@ -1,0 +1,274 @@
+.analytics-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  margin: 0;
+}
+
+.analytics-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 2rem;
+  color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.app-logo {
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 8px;
+}
+.analytics-navbar .nav-brand h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.back-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.analytics-content {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.error-message {
+  background-color: rgba(220, 53, 69, 0.9);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border-left: 4px solid #dc3545;
+}
+
+.loading {
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  padding: 3rem;
+}
+
+/* Metrics Summary Cards */
+.metrics-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.metric-card h3 {
+  margin: 0 0 1rem 0;
+  color: #667eea;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.metric-value {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.metric-unit {
+  font-size: 0.8rem;
+  color: #999;
+  font-weight: 400;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h2 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.chart-wrapper canvas {
+  max-height: 100% !important;
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  font-style: italic;
+}
+
+/* User Metrics Table */
+.metrics-table-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.metrics-table-container h2 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.metrics-table th {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 0.95rem;
+}
+
+.metrics-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  color: #666;
+}
+
+.metrics-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.metrics-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.role-badge.admin {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.role-badge.student {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #e0a800;
+}
+
+.role-badge.faculty {
+  background-color: rgba(13, 110, 253, 0.15);
+  color: #0d6efd;
+}
+
+.role-badge.user {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: #007bff;
+}
+
+.no-data-message {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .analytics-navbar .nav-brand h1 {
+    font-size: 1.4rem;
+  }
+
+  .metrics-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .analytics-content {
+    padding: 1rem;
+  }
+
+  .metrics-table {
+    font-size: 0.9rem;
+  }
+
+  .metrics-table th,
+  .metrics-table td {
+    padding: 0.7rem;
+  }
+}

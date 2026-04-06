@@ -69,26 +69,33 @@ const LoginActivity = () => {
         ) : activities.length === 0 ? (
           <div className="no-data">No login activity found</div>
         ) : (
-          <table className="activity-table">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Login Time</th>
-                <th>IP Address</th>
-                <th>Device Information</th>
-              </tr>
-            </thead>
-            <tbody>
-              {activities.map((activity) => (
-                <tr key={activity.id}>
-                  <td><strong>{activity.username}</strong></td>
-                  <td>{new Date(activity.loginTime).toLocaleString()}</td>
-                  <td>{activity.ipAddress}</td>
-                  <td className="device">{activity.device}</td>
+          <div className="activity-scroll-container">
+            <table className="activity-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Login Time</th>
+                  <th>IP Address</th>
+                  <th>Device Information</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {activities.map((activity) => {
+                  const loginTimeValue = activity.loginTime || activity.login_time
+                  const ipValue = activity.ipAddress || activity.ip_address || '-'
+
+                  return (
+                    <tr key={activity.id}>
+                      <td><strong>{activity.username}</strong></td>
+                      <td>{loginTimeValue ? new Date(loginTimeValue).toLocaleString() : '-'}</td>
+                      <td>{ipValue}</td>
+                      <td className="device">{activity.device || '-'}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>

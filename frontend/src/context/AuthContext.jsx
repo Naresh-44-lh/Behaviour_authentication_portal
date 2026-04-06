@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || ''
+
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
@@ -22,9 +24,10 @@ export const AuthProvider = ({ children }) => {
     setLoading(false)
   }, [])
 
-  const login = async (username, password) => {
+  const login = async (username, password, captchaToken, location) => {
     try {
-      const response = await axios.post('/api/auth/login', { username, password })
+      const payload = { username, password, captchaToken, location }
+      const response = await axios.post('/api/auth/login', payload)
       const { token, user } = response.data
       
       setToken(token)
@@ -33,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(user))
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       
-      return { success: true }
+      return { success: true, token }
     } catch (error) {
       return { success: false, error: error.response?.data?.error || 'Login failed' }
     }
