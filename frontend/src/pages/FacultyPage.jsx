@@ -41,7 +41,7 @@ const FacultyPage = () => {
     try {
       setLoading(true)
       setError('')
-      const response = await axios.get('/api/faculty/students')
+      const response = await axios.get('/_/backend/faculty/students')
       setStudents(response.data)
       setEdits({})
     } catch (err) {
@@ -122,7 +122,7 @@ const FacultyPage = () => {
     try {
       setSavingId(student.id)
       setError('')
-      await axios.post(`/api/faculty/students/${student.id}/record`, {
+      await axios.post(`/_/backend/faculty/students/${student.id}/record`, {
         marks: marksSummary,
         subjectGrades,
         daysPresent: numericPresent,
@@ -145,7 +145,7 @@ const FacultyPage = () => {
     try {
       setPostingNotice(true)
       setError('')
-      await axios.post('/api/faculty/notice', {
+      await axios.post('/_/backend/faculty/notice', {
         title: noticeTitle.trim(),
         message: noticeMessage.trim()
       })
@@ -169,7 +169,7 @@ const FacultyPage = () => {
     try {
       setAssigningMarks(true)
       setError('')
-      await axios.post('/api/faculty/marks', {
+      await axios.post('/_/backend/faculty/marks', {
         studentId: selectedStudent,
         subject: selectedSubject,
         marks: marksValue.trim()
@@ -202,7 +202,7 @@ const FacultyPage = () => {
     try {
       setUpdatingAttendance(true)
       setError('')
-      await axios.post('/api/faculty/attendance', {
+      await axios.post('/_/backend/faculty/attendance', {
         studentId: attendanceStudent,
         totalDays: total,
         presentDays: present

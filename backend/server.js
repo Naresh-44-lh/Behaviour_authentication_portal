@@ -22,8 +22,8 @@ app.use(express.json())
 
 // API Route Middleware to handle frontend connections
 app.use((req, res, next) => {
-  if (req.url.startsWith('/api/')) {
-    req.url = req.url.substring(4)
+  if (req.url.startsWith('/_/backend/')) {
+    req.url = req.url.replace('/_/backend', '')
   }
   next()
 })
@@ -828,14 +828,6 @@ app.get('/student/report', verifyToken, async (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' })
-})
-
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, '../frontend/dist')))
-
-// Catch-all to serve index.html for React Router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'))
 })
 
 // Start server with error handler for address-in-use

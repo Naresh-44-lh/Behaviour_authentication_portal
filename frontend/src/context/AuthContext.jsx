@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password, captchaToken, location) => {
     try {
       const payload = { username, password, captchaToken, location }
-      const response = await axios.post('/api/auth/login', payload)
+      const response = await axios.post('/_/backend/auth/login', payload)
       const { token, user } = response.data
       
       setToken(token)
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const response = await axios.post('/api/auth/register', { username, email, password })
+      const response = await axios.post('/_/backend/auth/register', { username, email, password })
       return { success: true, message: response.data.message }
     } catch (error) {
       return { success: false, error: error.response?.data?.error || 'Registration failed' }

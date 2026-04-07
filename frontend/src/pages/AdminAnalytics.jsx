@@ -52,15 +52,15 @@ const AdminAnalytics = () => {
         const headers = { Authorization: `Bearer ${token}` }
 
         // Fetch today's login stats
-        const todayRes = await axios.get('/api/admin/stats/today-logins', { headers })
+        const todayRes = await axios.get('/_/backend/admin/stats/today-logins', { headers })
         setTodayLogins(todayRes.data || [])
 
         // Fetch account creation stats
-        const creationRes = await axios.get('/api/admin/stats/account-creation', { headers })
+        const creationRes = await axios.get('/_/backend/admin/stats/account-creation', { headers })
         setAccountCreation(creationRes.data || [])
 
         // Fetch user metrics
-        const metricsRes = await axios.get('/api/admin/users', { headers })
+        const metricsRes = await axios.get('/_/backend/admin/users', { headers })
         setUserMetrics(metricsRes.data || [])
       } catch (err) {
         setError('Failed to load analytics data: ' + (err.response?.data?.error || err.message))

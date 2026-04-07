@@ -16,7 +16,7 @@ const AdminUsers = () => {
     try {
       setLoading(true)
       setError('')
-      const res = await axios.get('/api/admin/users')
+      const res = await axios.get('/_/backend/admin/users')
       setUsers(res.data)
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to load users')
@@ -32,7 +32,7 @@ const AdminUsers = () => {
     e.preventDefault()
     try {
       setLoading(true)
-      await axios.post('/api/admin/users/create', {
+      await axios.post('/_/backend/admin/users/create', {
         username: form.username,
         email: form.email,
         password: form.password,
@@ -48,7 +48,7 @@ const AdminUsers = () => {
 
   const toggleBlock = async (id, current) => {
     try {
-      await axios.post(`/api/admin/users/${id}/block`, { block: !current })
+      await axios.post(`/_/backend/admin/users/${id}/block`, { block: !current })
       fetchUsers()
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to update user')
@@ -58,7 +58,7 @@ const AdminUsers = () => {
   const deleteUser = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return
     try {
-      await axios.post(`/api/admin/users/${id}/delete`)
+      await axios.post(`/_/backend/admin/users/${id}/delete`)
       fetchUsers()
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to delete user')
@@ -69,7 +69,7 @@ const AdminUsers = () => {
     try {
       const headers = {}
       if (token) headers['Authorization'] = `Bearer ${token}`
-      await axios.post(`/api/admin/users/${id}/role`, { role: newRole }, { headers })
+      await axios.post(`/_/backend/admin/users/${id}/role`, { role: newRole }, { headers })
       fetchUsers()
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to change role')

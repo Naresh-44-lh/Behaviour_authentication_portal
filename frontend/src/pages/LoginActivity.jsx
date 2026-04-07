@@ -21,7 +21,7 @@ const LoginActivity = () => {
       setError('')
       
       // Determine endpoint based on user role
-      const endpoint = user?.role === 'admin' ? '/api/activity/all-activity' : '/api/activity/my-activity'
+      const endpoint = user?.role === 'admin' ? '/_/backend/activity/all-activity' : '/_/backend/activity/my-activity'
       const response = await axios.get(endpoint)
       
       setActivities(response.data)

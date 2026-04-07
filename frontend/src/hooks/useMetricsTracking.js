@@ -45,7 +45,7 @@ export const useMetricsTracking = () => {
     const mouseMovements = metrics.mouseMoveCount
 
     try {
-      await axios.post('/api/metrics/record', { typingSpeed: parseFloat(typingSpeed), mouseMovements }, {
+      await axios.post('/_/backend/metrics/record', { typingSpeed: parseFloat(typingSpeed), mouseMovements }, {
         headers: { Authorization: `Bearer ${token}` }
       })
     } catch (err) {

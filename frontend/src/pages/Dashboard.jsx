@@ -43,7 +43,7 @@ const Dashboard = () => {
     if (user?.role === 'student') {
       const fetchActivity = async () => {
         try {
-          const response = await axios.get('/api/activity/my-activity')
+          const response = await axios.get('/_/backend/activity/my-activity')
           const latest = response.data?.[0]
           if (latest) {
             setLastLogin(latest.login_time || latest.loginTime)

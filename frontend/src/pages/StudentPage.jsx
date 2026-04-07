@@ -44,7 +44,7 @@ const StudentPage = () => {
     try {
       setLoading(true)
       setError('')
-      const response = await axios.get('/api/student/dashboard')
+      const response = await axios.get('/_/backend/student/dashboard')
       setDashboard(response.data)
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to load your dashboard')
@@ -55,7 +55,7 @@ const StudentPage = () => {
 
   const fetchNotices = async () => {
     try {
-      const response = await axios.get('/api/notices')
+      const response = await axios.get('/_/backend/notices')
       setNotices(response.data)
     } catch (err) {
       console.error('Failed to fetch notices:', err)
@@ -64,7 +64,7 @@ const StudentPage = () => {
 
   const fetchMarks = async () => {
     try {
-      const response = await axios.get('/api/student/marks')
+      const response = await axios.get('/_/backend/student/marks')
       setMarks(response.data)
     } catch (err) {
       console.error('Failed to fetch marks:', err)
@@ -73,7 +73,7 @@ const StudentPage = () => {
 
   const fetchAttendance = async () => {
     try {
-      const response = await axios.get('/api/student/attendance')
+      const response = await axios.get('/_/backend/student/attendance')
       setAttendance(response.data)
     } catch (err) {
       console.error('Failed to fetch attendance:', err)
@@ -102,7 +102,7 @@ const StudentPage = () => {
     if (!dashboard) return
 
     // Fetch full report data
-    axios.get('/api/student/report')
+    axios.get('/_/backend/student/report')
       .then(response => {
         const report = response.data
 
