@@ -4,6 +4,11 @@ import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 import bcryptjs from 'bcryptjs'
 import db from './db.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 dotenv.config()
 
@@ -14,6 +19,14 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 // Middleware
 app.use(cors())
 app.use(express.json())
+
+// API Route Middleware to handle frontend connections
+app.use((req, res, next) => {
+  if (req.url.startsWith('/api/')) {
+    req.url = req.url.substring(4)
+  }
+  next()
+})
 
 let usingDB = false
 // In-memory fallback storage
@@ -815,6 +828,14 @@ app.get('/student/report', verifyToken, async (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'Server is running' })
+})
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '../frontend/dist')))
+
+// Catch-all to serve index.html for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'))
 })
 
 // Start server with error handler for address-in-use
