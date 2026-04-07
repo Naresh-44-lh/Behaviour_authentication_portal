@@ -6,16 +6,6 @@
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "build": "npm run build --prefix frontend",
     "start": "npm start --prefix backend"
-  },
-  "experimentalServices": {
-    "frontend": {
-      "entrypoint": "frontend",
-      "routePrefix": "/",
-      "framework": "vite"
-    },
-    "backend": {
-      "entrypoint": "backend",
-      "routePrefix": "/_/backend"
-    }
   }
 }
+
