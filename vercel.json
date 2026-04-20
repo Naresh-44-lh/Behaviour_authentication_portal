@@ -5,6 +5,10 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
+      "source": "/_/backend/(.*)",
+      "destination": "https://behaviour-authentication-portal.onrender.com/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

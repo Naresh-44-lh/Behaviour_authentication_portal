@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `student_records` (
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
   INDEX idx_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
-
 -- Demo accounts (use backend seeding or insert manually with bcrypt hashes):
 -- Admin: admin / admin123
 -- Student: student1 / user123

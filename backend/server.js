@@ -15,13 +15,27 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 4000
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
+if (process.env.NODE_ENV === 'production' && JWT_SECRET === 'your-secret-key-change-in-production') {
+  console.warn('WARNING: Running in production with default JWT_SECRET. This is insecure!')
+}
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://behaviour-authentication-portal.vercel.app',
+  process.env.FRONTEND_URL
+].filter(Boolean)
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://behaviour-authentication-portal.vercel.app'
-  ],
+  origin: (origin, callback) => {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
   credentials: true
 }))
 app.use(express.json())
